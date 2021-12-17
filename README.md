@@ -1,8 +1,8 @@
 # PatchAgainstLog4Shell
 This is for patching against Log4Shell in Windows via Powershell
-#Dependencies
+# Dependencies
 This requires 7-Zip, if you don't have it, install it first
-#How to run
+# How to run
 This is pretty easy to run
 1) Download the PatchAgainstLog4Shell.ps1 script
 2) Launch Powershell as Administrator
