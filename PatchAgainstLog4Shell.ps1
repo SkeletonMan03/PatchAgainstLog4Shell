@@ -3,7 +3,7 @@ $host.ui.RawUI.BackgroundColor="Black"
 $host.ui.RawUI.ForegroundColor="Blue"
 write-Host "Checking what drive letters are on machine..."
 $drives=get-psdrive | select Root
-Write-Host "Drives found..."
+Write-Host "Drives found:"
 $fdrives=$drives.Root -match '^[A-Z]:\\'
 $fdrives
 Write-Host "Searching for jar files..."
