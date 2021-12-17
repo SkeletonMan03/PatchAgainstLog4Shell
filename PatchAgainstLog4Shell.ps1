@@ -13,8 +13,7 @@ if ($jars.FullName -ne $null) {
 		Write-Host $jars.FullName.Count "jar found:"
 	}
 	$jars.FullName
-}
-else {
+} else {
 	Write-Host "No jar files on system... Exiting"
 	exit 0
 }
