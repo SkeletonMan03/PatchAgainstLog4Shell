@@ -10,7 +10,7 @@ Write-Host "Searching for jar files..."
 $jars=@()
 $vulnjars=@()
 foreach ($fdrive in $fdrives) {
-	Write-Host "Searching " $fdrive"..."
+	Write-Host "Searching" $fdrive"..."
 	$jars+=Get-ChildItem *.jar -Path $fdrive -Recurse -ErrorAction SilentlyContinue | select FullName
 }
 if ($jars.FullName -ne $null) {
