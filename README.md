@@ -1,7 +1,7 @@
 # PatchAgainstLog4Shell
 This is for patching against Log4Shell in Windows via Powershell
 # What it does
-This searches your entire C:\ drive for jar files then checks them for JndiLookup.class which is the class that is vulnerable to Log4Shell then it removes that class  
+This searches your entire computer for jar files then checks them for JndiLookup.class which is the class that is vulnerable to Log4Shell then it removes that class  
 Make it easy to patch Log4Shell
 # Why?
 Because most security software, such as Nessus, only look for the Log4j filename and report as vulnerable if it's below 2.16.  
