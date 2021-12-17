@@ -6,6 +6,7 @@ This searches your entire C:\ drive for jar files then checks them for JndiLooku
 This requires 7-Zip, if you don't have it, install it first
 # How to run
 This is pretty easy to run
+Kill any Java apllications you have running first!
 1) Download the PatchAgainstLog4Shell.ps1 script
 2) Launch Powershell as Administrator
 3) Run Set-ExecutionPolicy Bypass
