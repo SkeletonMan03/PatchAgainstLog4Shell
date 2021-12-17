@@ -1,5 +1,7 @@
 # PatchAgainstLog4Shell
 This is for patching against Log4Shell in Windows via Powershell
+# What it does
+This searches your entire C:\ drive for jar files then checks them for JndiLookup.class which is the class that is vulnerable to Log4Shell then it removes that class
 # Dependencies
 This requires 7-Zip, if you don't have it, install it first
 # How to run
