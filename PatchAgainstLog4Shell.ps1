@@ -3,8 +3,8 @@ $host.ui.RawUI.BackgroundColor="Black"
 $host.ui.RawUI.ForegroundColor="Blue"
 Write-Host "Searching for jar files..."
 $jars=@()
-$jars = Get-ChildItem *.jar -Path C:\ -Recurse -ErrorAction SilentlyContinue | select FullName
-$vulnjars= @()
+$jars=Get-ChildItem *.jar -Path C:\ -Recurse -ErrorAction SilentlyContinue | select FullName
+$vulnjars=@()
 if ($jars.FullName -ne $null) {
 	$host.ui.RawUI.ForegroundColor="DarkYellow"
 	if ($jars.FullName.Count -gt 1) {
