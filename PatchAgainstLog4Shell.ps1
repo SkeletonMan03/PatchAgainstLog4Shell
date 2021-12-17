@@ -1,10 +1,18 @@
-#Search for and patch Log4j vuln in all jar files on machine
+#Search for and patch Log4j vuln in ALL jar files on machine
 $host.ui.RawUI.BackgroundColor="Black"
 $host.ui.RawUI.ForegroundColor="Blue"
+write-Host "Checking what drive letters are on machine..."
+$drives=get-psdrive | select Root
+Write-Host "Drives found..."
+$fdrives=$drives.Root -match '^[A-Z]:\\'
+$fdrives
 Write-Host "Searching for jar files..."
 $jars=@()
-$jars=Get-ChildItem *.jar -Path C:\ -Recurse -ErrorAction SilentlyContinue | select FullName
 $vulnjars=@()
+foreach ($fdrive in $fdrives) {
+	Write-Host "Searching " $fdrive"..."
+	$jars+=Get-ChildItem *.jar -Path $fdrive -Recurse -ErrorAction SilentlyContinue | select FullName
+}
 if ($jars.FullName -ne $null) {
 	$host.ui.RawUI.ForegroundColor="DarkYellow"
 	if ($jars.FullName.Count -gt 1) {
@@ -14,7 +22,7 @@ if ($jars.FullName -ne $null) {
 	}
 	$jars.FullName
 } else {
-	Write-Host "No jar files on system... Exiting"
+	Write-Host "No jar files found... Exiting..."
 	exit 0
 }
 foreach ($jar in $jars.FullName) {
