@@ -8,7 +8,7 @@ Jar files can have this vulnerable dependency in it without the dependency being
 It's possible for software to be vulnerable to it that Nessus or other scanning software isn't even looking for.  
 The reason for patching this way is because official updates for software from some vendors have not yet been released or may never be released.  
 Some users may also be using EoL software that is vulnerable and this is an option for patching that as well even though running EoL software is not ideal.  
-#What is Log4Shell exactly?
+# What is Log4Shell exactly?
 See: https://en.wikipedia.org/wiki/Log4Shell  
 # Dependencies
 This requires 7-Zip, if you don't have it, install it first!
