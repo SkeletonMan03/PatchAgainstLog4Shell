@@ -10,7 +10,7 @@ It's possible for software to be vulnerable to it that Nessus or other scanning 
 This requires 7-Zip, if you don't have it, install it first
 # How to run
 This is pretty easy to run  
-Kill any Java apllications you have running first!
+Kill any Java applications you have running first!
 1) Download the PatchAgainstLog4Shell.ps1 script
 2) Launch Powershell as Administrator
 3) Run Set-ExecutionPolicy Bypass
