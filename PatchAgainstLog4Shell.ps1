@@ -1,33 +1,44 @@
-#Search for and patch Log4j vuln in ALL jar files on machine
+#Search for and patch Log4j vuln in all jar files on machine
 $host.ui.RawUI.BackgroundColor="Black"
 $host.ui.RawUI.ForegroundColor="Blue"
-Write-Host "Searching for Jar files..."
+Write-Host "Searching for jar files..."
 $jars=@()
 $jars = Get-ChildItem *.jar -Path C:\ -Recurse -ErrorAction SilentlyContinue | select FullName
-$vulnjars=@()
+$vulnjars= @()
 if ($jars.FullName -ne $null) {
 	$host.ui.RawUI.ForegroundColor="DarkYellow"
-	Write-Host "Jars found:"
+	if ($jars.FullName.Count -gt 1) {
+		Write-Host $jars.FullName.Count "jars found:" 
+	} elseif ($jars.FullName.Count -eq 1) {
+		Write-Host $jars.FullName.Count "jar found:"
+	}
 	$jars.FullName
-} else {
-	$host.ui.RawUI.ForegroundColor="Blue"
-	Write-Host "No jar files found on system... Exiting"
+}
+else {
+	Write-Host "No jar files on system... Exiting"
 	exit 0
 }
 foreach ($jar in $jars.FullName) {
-		$host.ui.RawUI.ForegroundColor="Blue"
-		Write-Host "Checking" $jar"..."
-		$testing = & "C:\Program Files\7-Zip\7z.exe" l $jar JndiLookup.class -r
-		if ($testing -match 'org\\apache\\logging\\log4j\\core\\lookup\\JndiLookup.class') {
-			$vulnjars += $jar
-		}
+	$host.ui.RawUI.ForegroundColor="Blue"
+	Write-Host "Checking" $jar"..."
+	$testing = & "C:\Program Files\7-Zip\7z.exe" l $jar JndiLookup.class -r
+	if ($testing -match 'org\\apache\\logging\\log4j\\core\\lookup\\JndiLookup.class') {
+		$vulnjars += $jar
+	}
 }
 if ($vulnjars -ne $null) {
 	$host.ui.RawUI.ForegroundColor="Red"
-	Write-Host "Vulnerable jars found:"
-	$vulnjars
-	$host.ui.RawUI.ForegroundColor="Magenta"
-	Write-Host "Removing vulnerable class from jars..."
+	if ($vulnjars.Count -gt 1) {
+		Write-Host $vulnjars.Count "vulnerable jars found:"
+		$vulnjars
+		$host.ui.RawUI.ForegroundColor="Magenta"
+		Write-Host "Removing vulnerable class from" $vulnjars.Count "jars..."
+	} elseif ($vulnjars.Count -eq 1) {
+		Write-Host $vulnjars.Count "vulnerable jar found:"
+		$vulnjars
+		$host.ui.RawUI.ForegroundColor="Magenta"
+		Write-Host "Removing vulnerable class from" $vulnjars.Count "jar..."
+	}
 	foreach ($vulnjar in $vulnjars) {
 		Write-Host "Removing vulnerable class from" $vulnjar"..."
 		& "C:\Program Files\7-Zip\7z.exe" d -tzip $vulnjar "JndiLookup.class" -r | Out-Null
