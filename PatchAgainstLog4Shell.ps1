@@ -26,7 +26,7 @@ foreach ($fdrive in $fdrives) {
 	$jars+=Get-ChildItem *.jar -Path $fdrive -Recurse -ErrorAction SilentlyContinue | Select-Object FullName
 }
 
-if ($null -eq $jars.FullName) {
+if ($jars.FullName -ne $null) {
 	$host.ui.RawUI.ForegroundColor="DarkYellow"
 	if ($jars.FullName.Count -gt 1) {
 		Write-Host $jars.FullName.Count "jars found:" 
@@ -48,7 +48,7 @@ foreach ($jar in $jars.FullName) {
 	}
 }
 
-if ($null -eq $vulnjars) {
+if ($vulnjars -ne $null) {
 	$host.ui.RawUI.ForegroundColor="Red"
 	if ($vulnjars.Count -gt 1) {
 		Write-Host $vulnjars.Count "vulnerable jars found:"
