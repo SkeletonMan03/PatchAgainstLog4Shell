@@ -13,7 +13,7 @@ Some users may also be using EoL software that is vulnerable and this is an opti
 # What is Log4Shell exactly?
 See: https://en.wikipedia.org/wiki/Log4Shell  
 # Dependencies
-This requires 7-Zip, if you don't have it, install it first!
+This requires 7-Zip, but if you don't have it, this script can install 7-Zip itself thanks to https://github.com/name.
 # How to run
 This is pretty easy to run  
 Kill any Java applications you have running first!
