@@ -25,4 +25,4 @@ Kill any Java applications you have running first!
 
 # Parameters
 A parameter for just scanning without patching has been added  
-You can run `PatchAgainstLog4Shell.ps1 -scanonly` to just scan for and print out the location of vulnerable jars
+You can run `PatchAgainstLog4Shell.ps1 -scanonly` to just scan for and print out the location of vulnerable jars without patching them automatically
