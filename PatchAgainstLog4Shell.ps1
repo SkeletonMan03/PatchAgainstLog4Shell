@@ -44,6 +44,7 @@ if ($jars.FullName -ne $null) {
 	$jars.FullName
 } else {
 	Write-Host "No jar files found... Exiting..."
+	$host.ui.RawUI.ForegroundColor="Gray"
 	exit 0
 }
 
@@ -64,6 +65,7 @@ if ($vulnjars -ne $null) {
 		if ($scanonly) {
 			$host.ui.RawUI.ForegroundColor="Green"
 			Write-Host "Scan finished! Run again without -scanonly parameter to patch!"
+			$host.ui.RawUI.ForegroundColor="Gray"
 			exit 0
 		}
 		$host.ui.RawUI.ForegroundColor="Magenta"
@@ -74,6 +76,7 @@ if ($vulnjars -ne $null) {
 		if ($scanonly) {
 			$host.ui.RawUI.ForegroundColor="Green"
 			Write-Host "Scan finished! Run again without -scanonly parameter to patch!"
+			$host.ui.RawUI.ForegroundColor="Gray"
 			exit 0
 		}
 		$host.ui.RawUI.ForegroundColor="Magenta"
