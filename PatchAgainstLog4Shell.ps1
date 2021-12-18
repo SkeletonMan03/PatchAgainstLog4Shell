@@ -1,19 +1,23 @@
 #Search for and patch Log4j vuln in ALL jar files on machine
 $host.ui.RawUI.BackgroundColor="Black"
 $host.ui.RawUI.ForegroundColor="Blue"
+
 write-Host "Checking what drive letters are on machine..."
-$drives=get-psdrive | select Root
+$drives=get-psdrive | Select-Object Root
 Write-Host "Drives found:"
 $fdrives=$drives.Root -match '^[A-Z]:\\'
 $fdrives
+
 Write-Host "Searching for jar files..."
 $jars=@()
 $vulnjars=@()
+
 foreach ($fdrive in $fdrives) {
 	Write-Host "Searching" $fdrive"..."
-	$jars+=Get-ChildItem *.jar -Path $fdrive -Recurse -ErrorAction SilentlyContinue | select FullName
+	$jars+=Get-ChildItem *.jar -Path $fdrive -Recurse -ErrorAction SilentlyContinue | Select-Object FullName
 }
-if ($jars.FullName -ne $null) {
+
+if ($null -eq $jars.FullName) {
 	$host.ui.RawUI.ForegroundColor="DarkYellow"
 	if ($jars.FullName.Count -gt 1) {
 		Write-Host $jars.FullName.Count "jars found:" 
@@ -25,6 +29,7 @@ if ($jars.FullName -ne $null) {
 	Write-Host "No jar files found... Exiting..."
 	exit 0
 }
+
 foreach ($jar in $jars.FullName) {
 	$host.ui.RawUI.ForegroundColor="Blue"
 	Write-Host "Checking" $jar"..."
@@ -33,7 +38,8 @@ foreach ($jar in $jars.FullName) {
 		$vulnjars += $jar
 	}
 }
-if ($vulnjars -ne $null) {
+
+if ($null -eq $vulnjars) {
 	$host.ui.RawUI.ForegroundColor="Red"
 	if ($vulnjars.Count -gt 1) {
 		Write-Host $vulnjars.Count "vulnerable jars found:"
@@ -56,4 +62,5 @@ if ($vulnjars -ne $null) {
 	$host.ui.RawUI.ForegroundColor="Green"
 	Write-Host "No vulnerable jars were found!"
 }
+
 $host.ui.RawUI.ForegroundColor="Gray"
