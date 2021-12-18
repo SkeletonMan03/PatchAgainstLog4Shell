@@ -4,11 +4,13 @@ $host.ui.RawUI.ForegroundColor="Blue"
 
 Write-Host "Checking if 7-Zip is installed"
 if (!(Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object {$_.DisplayName -like "7-Zip*"})) {
+	Write-Host "7-Zip is not installed... Installing 7-Zip..."
 	$dlurl = 'https://7-zip.org/' + (Invoke-WebRequest -UseBasicParsing -Uri 'https://7-zip.org/' | Select-Object -ExpandProperty Links | Where-Object {($_.outerHTML -match 'Download')-and ($_.href -like "a/*") -and ($_.href -like "*-x64.exe")} | Select-Object -First 1 | Select-Object -ExpandProperty href)
 	$installerPath = Join-Path $env:TEMP (Split-Path $dlurl -Leaf)
 	Invoke-WebRequest $dlurl -OutFile $installerPath
 	Start-Process -FilePath $installerPath -Args "/S" -Verb RunAs -Wait
 	Remove-Item $installerPath
+	Write-Host "7-Zip has been installed!"
 }
 
 Write-Host "Checking what drive letters are on machine..."
