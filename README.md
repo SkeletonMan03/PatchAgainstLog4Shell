@@ -19,6 +19,10 @@ This is pretty easy to run
 Kill any Java applications you have running first!
 1) Download the PatchAgainstLog4Shell.ps1 script
 2) Launch Powershell as Administrator
-3) Run Set-ExecutionPolicy Bypass
+3) Run `Set-ExecutionPolicy Bypass`
 4) cd to the directory it is in
-5) Run PatchAgainstLog4Shell.ps1 in the same Powershell Window
+5) Run `PatchAgainstLog4Shell.ps1` in the same Powershell Window
+
+# Parameters
+A parameter for just scanning without patching has been added  
+You can run `PatchAgainstLog4Shell.ps1 -scanonly` to just scan for and print out the location of vulnerable jars
