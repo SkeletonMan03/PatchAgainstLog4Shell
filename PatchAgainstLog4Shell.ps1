@@ -1,6 +1,12 @@
 #Search for and patch Log4j vuln in ALL jar files on machine
+Param([switch]$scanonly)
+
 $host.ui.RawUI.BackgroundColor="Black"
 $host.ui.RawUI.ForegroundColor="Blue"
+
+if ($scanonly) {
+	Write-Host "Log4Shell will not be patched, but will be scanned for"
+}
 
 Write-Host "Checking if 7-Zip is installed"
 if (!(Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object {$_.DisplayName -like "7-Zip*"})) {
@@ -55,11 +61,21 @@ if ($vulnjars -ne $null) {
 	if ($vulnjars.Count -gt 1) {
 		Write-Host $vulnjars.Count "vulnerable jars found:"
 		$vulnjars
+		if ($scanonly) {
+			$host.ui.RawUI.ForegroundColor="Green"
+			Write-Host "Scan finished! Run again without -scanonly parameter to patch!"
+			exit 0
+		}
 		$host.ui.RawUI.ForegroundColor="Magenta"
 		Write-Host "Removing vulnerable class from" $vulnjars.Count "jars..."
 	} elseif ($vulnjars.Count -eq 1) {
 		Write-Host $vulnjars.Count "vulnerable jar found:"
 		$vulnjars
+		if ($scanonly) {
+			$host.ui.RawUI.ForegroundColor="Green"
+			Write-Host "Scan finished! Run again without -scanonly parameter to patch!"
+			exit 0
+		}
 		$host.ui.RawUI.ForegroundColor="Magenta"
 		Write-Host "Removing vulnerable class from" $vulnjars.Count "jar..."
 	}
