@@ -1,4 +1,4 @@
-# PatchAgainstLog4Shell
+# Patch Against Log4Shell
 This is for patching against Log4Shell in Windows via Powershell
 # What it does
 This searches your entire computer for jar files then checks them for JndiLookup.class which is the class that is vulnerable to Log4Shell then it removes that class  
@@ -23,7 +23,10 @@ Kill any Java applications you have running first!
 4) cd to the directory it is in (For example: `cd C:\Users\username\Downloads`)
 5) Run `.\PatchAgainstLog4Shell.ps1` in the same Powershell Window
 
-Alternatively, you can just run `iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/SkeletonMan03/PatchAgainstLog4Shell/main/PatchAgainstLog4Shell.ps1'))` in an Administrator Powershell window (not recommended, but it works)
+Alternatively, you can just run this in an Administrator Powershell window (not recommended, but it works)  
+```
+iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/SkeletonMan03/PatchAgainstLog4Shell/main/PatchAgainstLog4Shell.ps1'))
+```
 
 # Parameters
 A parameter for just scanning without patching has been added  
