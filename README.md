@@ -23,6 +23,8 @@ Kill any Java applications you have running first!
 4) cd to the directory it is in (For example: `cd C:\Users\username\Downloads`)
 5) Run `.\PatchAgainstLog4Shell.ps1` in the same Powershell Window
 
+Alternatively, you can just run `iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/SkeletonMan03/PatchAgainstLog4Shell/main/PatchAgainstLog4Shell.ps1'))` in an Administrator Powershell window (not recommended, but it works)
+
 # Parameters
 A parameter for just scanning without patching has been added  
 You can run `.\PatchAgainstLog4Shell.ps1 -scanonly` to just scan for and print out the location of vulnerable jars without patching them automatically
