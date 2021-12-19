@@ -20,8 +20,8 @@ Kill any Java applications you have running first!
 1) Download the PatchAgainstLog4Shell.ps1 script
 2) Launch Powershell as Administrator
 3) Run `Set-ExecutionPolicy Bypass`
-4) cd to the directory it is in
-5) Run `PatchAgainstLog4Shell.ps1` in the same Powershell Window
+4) cd to the directory it is in (For example: `cd C:\Users\username\Downloads`)
+5) Run `.\PatchAgainstLog4Shell.ps1` in the same Powershell Window
 
 # Parameters
 A parameter for just scanning without patching has been added  
